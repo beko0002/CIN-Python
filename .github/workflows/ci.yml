@@ -30,7 +30,7 @@ jobs:
       - name: Run tests
         run: |
           python app.py & sleep 5
-          curl http://127.0.0.1:5000 | grep "Hello, this is for Docker!"
+          curl http://127.0.0.1:5002 | grep "Hello, this is for Docker!"
 
       # Step 5: Build Docker image
       - name: Build Docker image
@@ -38,4 +38,4 @@ jobs:
 
       # Step 6: Run Docker container
       - name: Run Docker container
-        run: docker run -d -e PORT=5000 -p 5000:5000 simple-flask-app
+        run: docker run -d -e PORT=5002 -p 5002:5002 simple-flask-app
