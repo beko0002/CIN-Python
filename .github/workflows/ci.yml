@@ -27,9 +27,12 @@ jobs:
           pip install -r requirements.txt
 
       # Step 4: Run tests
-      - name: Run tests
+      - name: Wait for port 3000 to be ready
         run: |
-          python app.py & sleep 5
+          until curl -s http://127.0.0.1:3000 > /dev/null; do
+            echo "Waiting for server to be ready..."
+            sleep 2
+          done
           curl http://127.0.0.1:3000 | grep "Hello, this is for Docker!"
 
       # Step 5: Build Docker image
