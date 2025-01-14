@@ -26,10 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-            - name: Kill existing processes on port 5002
-        run: |
-          kill -9 $(lsof -t -i:5002) || echo "No processes running on port 5002"
-          
+
+
       # Step 4: Build Docker image
       - name: Build Docker image
         run: docker build -t simple-flask-app .
@@ -40,5 +38,4 @@ jobs:
 
       # Step 6: Run tests
       - name: Run tests
-        run:
-          curl http://127.0.0.1:5002 | grep "Hello, this is for Docker!"
+        run: curl http://127.0.0.1:5002 | grep "Hello, this is for Docker!"
