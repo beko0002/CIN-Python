@@ -1,7 +1,7 @@
 # CIN-Python
 
 This project is a simple Python Flask application containerized using Docker.
-Test1
+Test
 
 ## Steps to Run Locally
 
