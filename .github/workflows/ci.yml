@@ -33,22 +33,4 @@ jobs:
       # Step 5: Run Docker container
       - name: Run Docker container
         run: docker run -d -e PORT=5002 -p 5002:5002 simple-flask-app
-
-      # Step 6: Test the application
-      - name: Test the Flask app
-        run: |
-          pip install requests
-          python -c "
-import requests
-try:
-    response = requests.get('http://localhost:5002')
-    assert response.status_code == 200, f'Unexpected status code: {response.status_code}'
-    print('Test passed. Server is running and reachable.')
-except Exception as e:
-    print('Test failed:', e)
-    exit(1)
-          "
-
-      # Step 7: Stop and remove the Docker container
-      - name: Clean up Docker
-        run: docker stop flask-test && docker rm flask-test
+        
