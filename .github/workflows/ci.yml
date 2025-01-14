@@ -47,6 +47,7 @@ try:
 except Exception as e:
     print('Test failed:', e)
     exit(1)
+          "
 
       # Step 7: Stop and remove the Docker container
       - name: Clean up Docker
