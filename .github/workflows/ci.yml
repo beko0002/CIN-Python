@@ -30,7 +30,7 @@ jobs:
       - name: Run tests
         run: |
           python app.py & sleep 5
-          curl http://127.0.0.1:2000 | grep "Hello, Docker!"
+          curl http://127.0.0.1:2000 | grep "Hello, this is for Docker!"
 
       # Step 5: Build Docker image
       - name: Build Docker image
