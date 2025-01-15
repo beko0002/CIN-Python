@@ -14,6 +14,7 @@
                 <th>Task</th>
                 <th>Added</th>
                 <th>Actions</th>
+                <th>Time Per Tasks </th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,18 @@
                         <button type="submit">Update</button>
                     </form>
                 </td>
+                <td>
+                    <!-- Dropdown Menu for Time -->
+                    <form style="display: inline;" action="{{ url_for('set_task_time', task_id=loop.index0) }}" method="post">
+                        <select name="time" required>
+                            <option value="15">15 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">60 minutes</option>
+                        </select>
+                        <button type="submit">Set Time</button>
+                    </form>
+                </td>
+ 
             </tr>
             {% endfor %}
         </tbody>
