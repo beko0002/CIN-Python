@@ -3,7 +3,7 @@ name: Docker App CI
 on:
   push:
     branches:
-      - developerFlorisBranch
+      - feature/add-CI-test
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
       - name: Run Docker container
         run: docker run -d -e PORT=5002 -p 5002:5002 simple-flask-app
       
-      # Step 4: Run tests
+      # Step 6: Run tests
       - name: Run tests
         run: pytest
         
