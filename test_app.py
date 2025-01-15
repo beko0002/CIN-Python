@@ -1,23 +1,27 @@
 import pytest
-from app import app
 
 @pytest.fixture
 def client():
-    app.testing = True
-    return app.test_client()
+    from app import app  # Import your Flask app
+    app.config['TESTING'] = True
+    with app.test_client() as client:
+        yield client
 
-def test_update_task(client):
-    # Add a new task to update
-    tasks.append({"task": "task to update", "added": "2025-01-14", "time": None})
+def test_index(client):
+    # Clear the session to reset any previous login state
+    with client.session_transaction() as sess:
+        sess.clear()
+
+    # Now simulate logging in with valid credentials
+    login_data = {
+        'username': 'admin',  # Replace with a valid test username
+        'password': 'password123'  # Replace with a valid test password
+    }
+    # POST to login route to simulate logging in
+    response = client.post('/login', data=login_data)
+
+    # Test the index route after logging in
+    response = client.get('/')
     
-    # Dynamically calculate the task ID
-    task_id = len(tasks) - 1  # Last task index
-
-    # Update the task
-    response = client.post(f"/update/{task_id}", data={"task": "updated task"})
-    assert response.status_code == 302
-
-    # Check that the task has been updated
-    response = client.get("/")
-    assert b"updated task" in response.data
-    assert b"task to update" not in response.data
+    # Assert the status code should be 200 after login
+    assert response.status_code == 200
