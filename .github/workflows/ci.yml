@@ -29,24 +29,15 @@ jobs:
       # Step 4: Build Docker image
       - name: Build Docker image
         run: docker build -t simple-flask-app .
+      - name: Check Docker container file structure
+        run: docker exec simple-flask-app ls -R /app/templates
+
 
       # Step 5: Run Docker container
       - name: Run Docker container
         run: docker run -d -e PORT=5002 -p 5002:5002 simple-flask-app
       
-
-      # Step 6: Wait for the app to be ready (Optional, but useful)
-      - name: Wait for app to be available
-        run: |
-          for i in {1..10}; do
-            if curl --silent --fail http://localhost:5002; then
-              echo "App is up and running!"
-              break
-            fi
-            echo "Waiting for app to be ready..."
-            sleep 5
-          done
-
-      # Step 7: Run tests
+      # Step 6: Run tests
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v
+        
