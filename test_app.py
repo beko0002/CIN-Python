@@ -1,6 +1,11 @@
 import pytest
 from app import app
 
+@pytest.fixture
+def client():
+    app.testing = True
+    return app.test_client()
+
 def test_update_task(client):
     # Add a new task to update
     tasks.append({"task": "task to update", "added": "2025-01-14", "time": None})
