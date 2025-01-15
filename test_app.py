@@ -1,5 +1,6 @@
 import pytest
 from app import app
+from app import tasks  # Import the global tasks list
 
 @pytest.fixture
 def client():
@@ -18,8 +19,17 @@ def test_add_task(client):
     assert b"new task" in response.data
 
 def test_delete_task(client):
-    client.post("/add", data={"task": "task to delete"})
-    response = client.get("/delete/1")  # Assuming the task ID is 1
+    # Add a new task directly to the tasks list
+    tasks.append({"task": "task to delete", "added": "2025-01-14"})
+    
+    # Dynamically calculate the task ID
+    task_id = len(tasks) - 1  # Last task index
+    
+    # Delete the task
+    response = client.get(f"/delete/{task_id}")
     assert response.status_code == 302
+    
+    # Check that the task is no longer in the list
     response = client.get("/")
     assert b"task to delete" not in response.data
+
