@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
+# Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -30,15 +30,26 @@ jobs:
       - name: Build Docker image
         run: docker build -t simple-flask-app .
 
-
       # Step 5: Run Docker container
       - name: Run Docker container
-        run: docker run -d -e PORT=5002 -p 5002:5002 simple-flask-app
-      - name: Check Docker container file structure
-        run: docker exec simple-flask-app ls -R /app/templates
+        run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app simple-flask-app
 
-      
-      # Step 6: Run tests
+      # Step 6: Wait for Flask app to fully start (optional but recommended)
+      - name: Wait for Flask to start
+        run: sleep 10
+
+      # Step 7: List running Docker containers
+      - name: List running Docker containers
+        run: docker ps
+
+      # Step 8: Check Docker container logs to see if Flask is running
+      - name: Check Docker container logs
+        run: docker logs $(docker ps -q --filter "name=simple-flask-app")
+
+      # Step 9: List Docker images to ensure the image was built correctly
+      - name: List Docker images
+        run: docker images
+
+      # Step 10: Run tests
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v
-        
