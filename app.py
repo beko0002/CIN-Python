@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from functools import wraps  # For the login_required
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.secret_key = 'your_secret_key'  # Required for session handling
 
 USER_CREDENTIALS = {
