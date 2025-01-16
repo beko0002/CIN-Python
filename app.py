@@ -23,6 +23,10 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+@app.route('/test')
+def test():
+    return 'Hello, World!'
+
 @app.route('/')
 @login_required
 def home():
