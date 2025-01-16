@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests inside Docker container
-        run: pytest --maxfail=1 --disable-warnings -v
+        run: pytest --maxfail=1 --disable-warnings -vv
 
       # Step 4: Build Docker image
       - name: Build Docker image
