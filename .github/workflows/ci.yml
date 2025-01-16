@@ -32,7 +32,7 @@ jobs:
 
       # Step 5: Run Docker container
       - name: Run Docker container
-        run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app -w /app simple-flask-app
+        run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app simple-flask-app
 
       # Step 6: Wait for Flask to fully start (optional but recommended)
       - name: Wait for Flask to start
@@ -41,10 +41,10 @@ jobs:
       # Step 7: List running Docker containers
       - name: List running Docker containers
         run: docker ps
-        
-      # Step 8: Check Docker container logs
-      - name: List files in /app
-        run: docker exec simple-flask-app ls -R /app
+
+      # Step 8: Check Docker container logs to see if Flask is running
+      - name: Check Docker container logs
+        run: docker logs $(docker ps -q --filter "name=simple-flask-app")
 
       # Step 9: List Docker images to ensure the image was built correctly
       - name: List Docker images
