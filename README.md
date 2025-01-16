@@ -1,7 +1,15 @@
-# CIN-Python
-
-This project is a simple Python Flask application containerized using Docker.
-Test
+# CIN-Python Task Manager## 📌 Overview
+This is a simple **Task Manager** web application built using **Flask** and Docker.  
+It includes **authentication (login/logout)** and basic task management (add, update, delete, set time per task).  
+The project follows **Git best practices**, with proper branching, tagging, and release management.
+ 
+---
+ 
+## 🚀 Features- ✅ **User Authentication (Login & Logout)**- ✅ **Task Management**  - Add tasks
+  - Update tasks
+  - Delete tasks
+  - Set time per task (15, 30, 60 minutes)
+- ✅ **CI/CD Pipeline**- ✅ **Hotfixes & Versioning**- ✅ **Docker Deployment**
 
 ## Steps to Run Locally
 
@@ -39,6 +47,8 @@ The test checks whether the `/test` route in the Flask app returns a status code
     
 #     # Assert the status code should be 200
 #     assert response.status_code == 200
+
+
 
 
 1️⃣ Login Feature
