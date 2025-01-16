@@ -23,7 +23,7 @@ def login_required(f):
 @app.route('/')
 @login_required
 def home():
-    return render_template('templates/home.html', username=session['username'], tasks=tasks)
+    return render_template('home.html', username=session['username'], tasks=tasks)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
