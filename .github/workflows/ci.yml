@@ -3,7 +3,7 @@ name: Docker App CI
 on:
   push:
     branches:
-      - developerFlorisBranch
+      - developerBranch
 
 jobs:
   build:
