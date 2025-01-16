@@ -32,7 +32,7 @@ jobs:
 
       # Step 5: Run Docker container
       - name: Run Docker container
-        run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app -w /app CIN-Python
+        run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app -w /app simple-flask-app
 
       # Step 6: Wait for Flask to fully start (optional but recommended)
       - name: Wait for Flask to start
