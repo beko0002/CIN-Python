@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-# Step 1: Checkout the code
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -34,7 +34,7 @@ jobs:
       - name: Run Docker container
         run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app simple-flask-app
 
-      # Step 6: Wait for Flask app to fully start (optional but recommended)
+      # Step 6: Wait for Flask to fully start (optional but recommended)
       - name: Wait for Flask to start
         run: sleep 10
 
