@@ -3,7 +3,7 @@ name: Docker App CI
 on:
   push:
     branches:
-      - developerBranch
+      - feature/add-CI-test
 
 jobs:
   build:
@@ -26,11 +26,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Build Docker image
+      - name: Run tests 
+        run: pytest --maxfail=1 --disable-warnings -vv
+
+      # Build Docker image
       - name: Build Docker image
         run: docker build -t simple-flask-app .
 
       # Step 5: Run Docker container
       - name: Run Docker container
-        run: docker run -d -e PORT=5002 -p 5002:5002 simple-flask-app
-        
+        run: docker run -d -e PORT=5002 -p 5002:5002 --name simple-flask-app simple-flask-app
