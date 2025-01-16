@@ -3,8 +3,7 @@ name: Docker App CI
 on:
   push:
     branches:
-      - feature/add-CI-test
-
+      - developerBranch
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +27,7 @@ jobs:
                 - name: Run Flake8
         run: |
           flake8 .
-          
+
       - name: Run tests 
         run: pytest --maxfail=1 --disable-warnings -vv
 
