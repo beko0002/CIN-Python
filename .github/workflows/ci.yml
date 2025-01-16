@@ -26,7 +26,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run Flake8
         run: |
-          flake8 --ignore=E302,E501,W293
+          flake8 --ignore=E302,E501,W293 .
 
       - name: Run tests 
         run: pytest --maxfail=1 --disable-warnings -vv
