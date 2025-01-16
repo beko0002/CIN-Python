@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests inside Docker container
-        run: docker exec simple-flask-app pytest --maxfail=1 --disable-warnings -v
+        run:run: pytest --maxfail=1 --disable-warnings -v
 
       # Step 4: Build Docker image
       - name: Build Docker image
