@@ -9,6 +9,38 @@ Test
    ```bash
    docker build -t simple-flask-app .
 
+
+
+# Flask App Testing
+
+## Simple Test: `/test` Route
+
+This project includes a simple test for the `/test` route to ensure that it is functioning correctly.
+
+### Test Description
+
+The test checks whether the `/test` route in the Flask app returns a status code of `200`, indicating that the route is working and responding correctly.
+
+### Test Code
+
+```python
+# import pytest
+
+# @pytest.fixture
+# def client():
+#     from app import app  # Import your Flask app
+#     app.config['TESTING'] = True
+#     with app.test_client() as client:
+#         yield client
+
+# def test_index(client):
+#     # Simply test if the /test route returns status 200
+#     response = client.get('/test')
+    
+#     # Assert the status code should be 200
+#     assert response.status_code == 200
+
+
 1️⃣ Login Feature
 📌 Title: User Authentication - Login
 
